@@ -1,0 +1,53 @@
+alias vbash='vim ~/.mybashrc'
+alias vvim='vim ~/.vimrc'
+alias vi3='vim ~/.config/i3/config'
+alias sbash='source ~/.bashrc'
+
+## syntax highlighter
+
+alias vcat='vimcat'
+alias vless='vimpager'
+
+alias bcat='batcat -pp' #best
+alias bless='batcat'
+
+alias hcat='highlight -O ansi --force'
+alias catpy='pygmentize -l python'
+alias catjava='pygmentize -l java'
+###
+alias cat='bcat'
+########################################
+
+alias cd.='cd ..'
+alias cd..='cd ../..'
+alias cd...='cd ../../..'
+alias cd....='cd ../../../..'
+
+alias ll='ls -l'
+alias llh='ls -lh'
+alias la='ls -a'
+alias lah='ls -ah'
+alias lla='ls -la'
+alias llah='ls -lah'
+
+alias grep='grep --color'
+
+mkcd() { mkdir $1 && cd $1 ; }
+
+cdls() { cd $1 && ls ; }
+
+cls() { clear && ls ; }
+
+cdcls() { cd $1 && cls ; }
+
+## from distroTube ##
+
+# run random color script
+colorscript -r
+
+# print insulting word when written wrong syntax
+if [ -f /etc/bash.command-not-found ]; then
+    . /etc/bash.command-not-found
+fi
+
+#####################

@@ -1,7 +1,12 @@
+alias vim='nvim'
 alias vbash='vim ~/.mybashrc'
-alias vvim='vim ~/.vimrc'
+alias vvim='vim ~/.config/nvim/init.vim'
 alias vi3='vim ~/.config/i3/config'
 alias sbash='source ~/.bashrc'
+
+alias rm='echo Command Changed : use trm command  or use \\rm'
+alias trm='trash-put'
+alias tls='trash-list'
 
 ## syntax highlighter
 
@@ -30,6 +35,9 @@ alias lah='ls -ah'
 alias lla='ls -la'
 alias llah='ls -lah'
 
+alias du='du -h'
+alias df='df -h'
+
 alias grep='grep --color'
 
 mkcd() { mkdir $1 && cd $1 ; }
@@ -39,6 +47,18 @@ cdls() { cd $1 && ls ; }
 cls() { clear && ls ; }
 
 cdcls() { cd $1 && cls ; }
+
+## my custom comand for directory saving and switching
+alias cds1='pwd > ~/.cache/aman/dir1'
+alias cds2='pwd > ~/.cache/aman/dir2'
+alias cds3='pwd > ~/.cache/aman/dir3'
+
+alias cd1='cd $(cat ~/.cache/aman/dir1)'
+alias cd2='cd $(cat ~/.cache/aman/dir2)'
+alias cd3='cd $(cat ~/.cache/aman/dir3)'
+
+# load powerline shell
+. /usr/share/powerline/bindings/bash/powerline.sh
 
 ## from distroTube ##
 
@@ -51,3 +71,4 @@ if [ -f /etc/bash.command-not-found ]; then
 fi
 
 #####################
+

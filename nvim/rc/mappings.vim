@@ -1,5 +1,5 @@
-
 let mapleader=" "
+
 
 " remap <esc> 
 inoremap jk <esc>
@@ -8,6 +8,73 @@ cnoremap jk <esc>
 cnoremap kj <esc>
  
 
+" tabs maping
+nnoremap <leader>th :tabprev<CR>
+nnoremap <leader>tl :tabnext<CR>
+nnoremap <leader>tH :tabfirst<CR> 
+nnoremap <leader>tL :tablast<CR>
+
+nnoremap <leader>tn :tabnext<space>
+nnoremap <leader>te :tabedit<space>
+nnoremap <leader>tm :tabmove<space>
+
+""""""""""""""""""""""""""""""""""""""""
+""""""""""""   WINDOWS   """"""""""""""
+""""""""""""""""""""""""""""""""""""""""
+
+""" splits window 
+" new : open new window below
+nnoremap <leader>wn :new<CR>
+" vnew : open new window right
+nnoremap <leader>wv :vnew<CR>
+
+""" close window
+" close : close current window
+nnoremap <leader>wC <c-w>c
+" only : close other windows
+nnoremap <leader>wO <c-w>o
+
+
+""" moving cursor on window
+nnoremap <leader>wj <c-w>j
+nnoremap <leader>wk <c-w>k
+nnoremap <leader>wl <c-w>l
+nnoremap <leader>wh <c-w>h
+
+""" move window
+nnoremap <leader>wJ <c-w>J
+nnoremap <leader>wK <c-w>K
+nnoremap <leader>wL <c-w>L
+nnoremap <leader>wH <c-w>H
+" rotate clockwise
+nnoremap <leader>wr <c-w>r
+" rotate anticlokwise
+nnoremap <leader>wR <c-w>R
+" exchange window with next
+nnoremap <leader>wx <c-w>x
+" move current window to new tab
+nnoremap <leader>wT <c-w>T
+
+""""""""""""""""""""""""""
+
+" easy insersion of of a tailing ; or , form normal mode
+nnoremap ;; A;<Esc>
+nnoremap ,,, A,<Esc>
+nnoremap ,, ea,<Esc>
+
+" Allow gf to open non-existng file
+nmap gf :edit <cfile><cr>
+
+"""""""""Terminal Mode"""""""""
+tnoremap <Esc> <C-\><C-n>
+tnoremap jk <C-\><C-n>
+
+
+""""""""" git gutter """""""""
+nnoremap <leader>gj :GitGutterNextHunk<CR>
+nnoremap <leader>gk :GitGutterPrevHunk<CR>
+nnoremap <leader>gp :GitGutterPrevHunk<CR>
+
 " nvim config
 command! Vsource	source ~/.config/nvim/init.vim
 command! Vinit		tabedit ~/.config/nvim/init.vim
@@ -15,24 +82,88 @@ command! Vmap		tabedit ~/.config/nvim/rc/mappings.vim
 command! Vprop		tabedit ~/.config/nvim/rc/properties.vim
 command! Vplug		tabedit ~/.config/nvim/rc/plugins.vim
 
+
 " tools
+" programming run
+nnoremap <leader>rj :w <CR>:!java %<CR>
+nnoremap <leader>rp :!python3 %<CR>
+nnoremap <leader>rb :!bash %<CR>
+nnoremap <leader>rs :!scala %<CR>
+
+"""""" Rust """"""
+" nnoremap <leader>rr :!rofi -e "$(rustc % -o /tmp/rustexe && /tmp/rustexe)"<CR>
+nnoremap <leader>rr :!rustc % -o /tmp/rustexe && /tmp/rustexe <CR>
+" nnoremap <leader>rr :!rofi -e "$(cargo run)"<CR>
+nnoremap <leader>rcr :!cargo run  
+nnoremap <leader>rcb :!cargo build<CR> 
+nnoremap <leader>rcc :!cargo check
+nnoremap <leader>rcf :!cargo fmt<CR>
+
+nnoremap <leader>rc :!rofi -e "$(gcc % -o /tmp/cexe && /tmp/cexe)"<CR>
 
 
 
-" tabs maping
-nnoremap <leader>h :tabprev<CR>
-nnoremap <leader>l :tabnext<CR>
-nnoremap <leader>H :tabfirst<CR> 
-nnoremap <leader>L :tablast<CR>
+function! MyGitGutterOptionsSink (selected) 
+    let command = split(a:selected, " : ")[0]
+    let cmd = "normal! :" . command . "\n"
+    execute cmd
+endfunction
 
-nnoremap <leader>n :tabnext<space>
-nnoremap <leader>e :tabedit<space>
-nnoremap <leader>m :tabmove<space>
+function! MyGitGutterOptionsSource()
+    let options = { "GitGutterToggle" : "Turn on/off gitgutter", 
+                \ "GitGutterBufferToggle" : "Turn on/off gitgutter in buffer",
+                \ "GitGutterSignsToggle" : "Show git diff signs",
+                \ "GitGutterLineHighlightsToggle" : "show highlighed line",
+                \ "GitGutterLineNrHighlightsToggle" : "show highlighed number",
+                \ "GitGutterNextHunk" : "goto next chunk",
+                \ "GitGutterPrevHunk" : "goto prev. chunk",
+                \ "GitGutterStageHunk" : "staged the chunk",
+                \ "GitGutterUndoHunk" : "unstaged the chunk",
+                \ "GitGutterPreviewHunk" : "preview the prev. version of chunk",
+                \ "GitGutterFold" : "fold/unfold the chunks",
+                \}
+    let option_list = []
+    for key in keys(options)
+        let s = printf("%-35S : %s" , key, options[key])
+        let option_list = insert(option_list, s)
+    endfor
+    return option_list
+endfunction
 
-" splits maping
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-nnoremap <c-h> <c-w>h
+command! MyGitGutterOptions call fzf#run(fzf#wrap({
+            \ 'source'  : MyGitGutterOptionsSource() ,
+            \ 'sink' : function("MyGitGutterOptionsSink")
+            \ }))
+
+" fzf
+nnoremap <leader><leader> :FZF<CR>
+nnoremap <c-c> "+y
+nnoremap <c-v> "+p 
 
 
+""""""""""""""""""""""""" nerdtree  """"""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <c-n> :NERDTreeToggle<CR>
+nnoremap <leader><C-i> :NERDTreeFocus<CR>
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" vim-nerdtree-syntax-highlight
+let g:NERDTreeFileExtensionHighlightFullName = 1

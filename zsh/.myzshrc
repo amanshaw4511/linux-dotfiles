@@ -1,0 +1,19 @@
+
+
+alias vzsh='vim ~/.zshrc'
+alias zsource='source ~/.zshrc'
+
+alias less='batcat'
+alias cat='batcat -pp'
+alias open='xdg-open'
+
+alias psmem='ps -e -orss=,args= | sort -b -k1 -nr'
+alias psmem10='ps -e -orss=,args= | sort -b -k1 -nr| head -n 10'
+
+alias pscput='ps -e -o pcpu,cpu,nice,state,cputime,args |sort -k1 -nr'
+alias pscput10='ps -e -o pcpu,cpu,nice,state,cputime,args |sort -k1 -nr| head -n 10'
+
+alias tmux='_zsh_tmux_plugin_run -u'
+ZSH_TMUX_AUTOSTART=true
+
+

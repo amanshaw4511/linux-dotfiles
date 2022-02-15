@@ -11,9 +11,11 @@ source ~/.config/nvim/plugins/telescope.vim
 source ~/.config/nvim/plugins/bufferline.vim
 source ~/.config/nvim/plugins/devicons.vim
 source ~/.config/nvim/plugins/lspconfig.vim
-source ~/.config/nvim/plugins/comment.vim
 
 lua require('rc_treesitter')
 lua require('rc_lspconfig')
 lua require('rc_lualine')
 lua require('rc_nvimtree')
+lua require('rc_crates')
+lua require('rc_comment')
+

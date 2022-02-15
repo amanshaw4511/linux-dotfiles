@@ -8,6 +8,7 @@ Plug 'tpope/vim-surround'
 Plug 'voldikss/vim-floaterm'
 " Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'vifm/vifm.vim'
+Plug 'rust-lang/rust.vim'
 
     " Plug 'preservim/nerdtree' |
     "         \ Plug 'Xuyuanp/nerdtree-git-plugin' |
@@ -40,8 +41,12 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 
+" cargo toml deppendency
+Plug 'saecki/crates.nvim'
+
 " Comment
 Plug 'numToStr/Comment.nvim'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 Plug 'nvim-lualine/lualine.nvim'
 
@@ -58,8 +63,11 @@ Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'akinsho/bufferline.nvim'
 
      " for syntax syntax highlighting
-     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-refactor'
+Plug 'windwp/nvim-ts-autotag'
+Plug 'folke/twilight.nvim'
+Plug 'mfussenegger/nvim-ts-hint-textobject'
 
      " show css color in css file
      Plug 'ap/vim-css-color'

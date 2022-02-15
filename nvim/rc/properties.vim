@@ -25,14 +25,22 @@ set listchars=trail:~
 set scrolloff=8
 " set sidescrolloff=8
 
-autocmd FileType html set sw=2
-autocmd FileType html set ts=2
 
 " Django recommended
 autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
 
+
+" html
+autocmd FileType html set sw=2
+autocmd FileType html set ts=2
+" js
+autocmd FileType javascript set sw=2
+autocmd FileType javascript set ts=2
+" react
+autocmd FileType javascriptreact set sw=2
+autocmd FileType javascriptreact set ts=2
 
 " enable mouse support
 set mouse=a
@@ -70,6 +78,4 @@ let g:gruvbox_italic = 1
 let g:gruvbox_transparent_bg =1
 let g:gruvbox_contrast_dark = "hard"    " options : soft, medium, hard
 " let g:gruvbox_contrast_light = "hard"    " options : soft, medium, hard
-
-
 

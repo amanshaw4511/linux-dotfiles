@@ -72,7 +72,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rust systemd tmux)
+plugins=(git rust systemd tmux sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,3 +106,12 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.myzshrc
 
 . "$HOME/.cargo/env"
+export PATH=$PATH:$HOME/.local/bin
+
+NPM_PACKAGES="${HOME}/.npm-packages"
+export PATH="$PATH:$NPM_PACKAGES/bin"
+
+# Preserve MANPATH if you already defined it somewhere in your config.
+# Otherwise, fall back to `manpath` so we can inherit from `/etc/manpath`.
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+

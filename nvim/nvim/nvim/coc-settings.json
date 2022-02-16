@@ -1,0 +1,15 @@
+{
+"codeLens.enable": true,
+"java.referencesCodeLens.enabled": true,
+"java.implementationsCodeLens.enabled": true,
+"java.completion.enabled": true,
+"java.jdt.ls.vmargs": "-javaagent:/usr/local/share/lombok/lombok.jar",
+
+"languageserver": {
+  "rust": {
+    "command": "rust-analyzer",
+    "filetypes": ["rust"],
+    "rootPatterns": ["Cargo.toml"]
+  }
+}
+}

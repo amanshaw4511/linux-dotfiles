@@ -1,5 +1,6 @@
 let mapleader=" "
 
+
 " remap <esc> 
 inoremap jk <esc>
 inoremap kj <esc>
@@ -91,15 +92,14 @@ nnoremap <leader>rs :!scala %<CR>
 
 """""" Rust """"""
 " nnoremap <leader>rr :!rofi -e "$(rustc % -o /tmp/rustexe && /tmp/rustexe)"<CR>
-" nnoremap <leader>rr :!rustc % -o /tmp/rustexe && /tmp/rustexe <CR>
+nnoremap <leader>rr :!rustc % -o /tmp/rustexe && /tmp/rustexe <CR>
 " nnoremap <leader>rr :!rofi -e "$(cargo run)"<CR>
-nnoremap <leader>rcr :!cargo -q run<CR>
-nnoremap <leader>rct :!cargo test<CR>
-nnoremap <leader>rcb :!cargo build<CR>
-nnoremap <leader>rcc :!cargo check<CR>
+nnoremap <leader>rcr :!cargo run  
+nnoremap <leader>rcb :!cargo build<CR> 
+nnoremap <leader>rcc :!cargo check
 nnoremap <leader>rcf :!cargo fmt<CR>
 
-nnoremap <leader>rc :!rofi -e "$(g++ % -o /tmp/cexe && /tmp/cexe)"<CR>
+nnoremap <leader>rc :!rofi -e "$(gcc % -o /tmp/cexe && /tmp/cexe)"<CR>
 
 
 
@@ -139,6 +139,4 @@ command! MyGitGutterOptions call fzf#run(fzf#wrap({
 nnoremap <leader><leader> :FZF<CR>
 nnoremap <c-c> "+y
 nnoremap <c-v> "+p 
-
-autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *.rs :lua require('lsp_extensions').inlay_hints{ enabled = {'TypeHint', 'ChainingHint', 'ParameterHint'}, prefix = ' ↣ ',}
 

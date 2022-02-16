@@ -1,12 +1,4 @@
-local servers = {
-    'cssls','html','jsonls','eslint', -- form vscode-langservers-extracted
-    'bashls',
-   'rust_analyzer',
-    'pyright',
-    'tsserver',
-    'jdtls',
-    'sumneko_lua'
-}
+local servers = {'rust_analyzer' }
 
 local on_attach = function()
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {buffer=0})
@@ -20,8 +12,6 @@ local on_attach = function()
         vim.keymap.set("n", "<leader>cd", "<cmd>Telescope diagnostics<cr>", {buffer=0})
         vim.keymap.set("n", "<leader>cdj", vim.diagnostic.goto_next, {buffer=0})
         vim.keymap.set("n", "<leader>cdk", vim.diagnostic.goto_prev, {buffer=0})
-
-        -- autoformat on save
 
         -- auto completion
         vim.keymap.set("i", "c-<space>", vim.lsp.omnifunc, {buffer=0})
@@ -73,11 +63,8 @@ vim.opt.completeopt = {"menu", "menuone", "noselect"}
     })
   })
 
-  --------------------------------------------------------------
-  --------------------------------------------------------------
   -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 for _,lsp in ipairs(servers) do
     require('lspconfig')[lsp].setup{
@@ -86,7 +73,11 @@ for _,lsp in ipairs(servers) do
     }
 end
 
-require('lspconfig').rust_analyzer.setup{
-        capabilities = capabilities,
-        on_attach = on_attach
-}
+-- nnoremap <leader>cD :Telescope coc definitions
+-- nnoremap <leader>cT :Telescope coc type_definitions
+-- nnoremap <leader>cI :Telescope coc implementations
+-- nnoremap <leader>cR :Telescope coc references
+
+-- nnoremap <leader>cd :Telescope coc diagnostics<CR>
+-- nnoremap <leader>cs :Telescope coc document_symbols
+
